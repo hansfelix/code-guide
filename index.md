@@ -2,22 +2,22 @@
 layout: default
 ---
 
-<h2 id="toc">Table of contents</h2>
+<h2 id="toc">Tabla de contenido</h2>
 
 <div markdown="1">
 ### [HTML](#html)
 
-- [HTML syntax](#html-syntax)
+- [Sintaxis](#html-syntax)
 - [HTML5 doctype](#html5-doctype)
-- [Language attribute](#language-attribute)
-- [IE compatibility mode](#ie-compatibility-mode)
-- [Character encoding](#character-encoding)
-- [CSS and JavaScript includes](#css-and-javascript-includes)
-- [Practicality over purity](#practicality-over-purity)
-- [Attribute order](#attribute-order)
-- [Boolean attributes](#boolean-attributes)
-- [Reduce markup](#reduce-markup)
-- [Editor preferences](#editor-preferences)
+- [Atributo de idioma](#language-attribute)
+- [Modo de compatibilidad con IE](#ie-compatibility-mode)
+- [Codificación de caracteres](#character-encoding)
+- [Vinculación de archivos CSS y JavaScript](#css-and-javascript-includes)
+- [Practicidad sobre pureza](#practicality-over-purity)
+- [Orden de los atributos](#attribute-order)
+- [Atributos booleanos](#boolean-attributes)
+- [Reducir las etiquetas](#reduce-markup)
+- [Preferencias del editor](#editor-preferences)
 </div>
 
 <div markdown="1">
@@ -40,24 +40,24 @@ layout: default
 - [Organization](#organization)
 </div>
 
-## Golden rule
+## Regla de oro
 
-Enforce these, or your own, agreed upon guidelines at all times. Small or large, call out what's incorrect. For additions or contributions to this Code Guide, please [open an issue on GitHub](https://github.com/mdo/code-guide/issues/new).
+Cumpla los siguientes estándares, o los suyos, en todo momento. No importa si el error es pequeño o grande, evite lo que es incorrecto. Para adiciones o contribuciones a esta Guía de código, [cree un issue en GitHub](https://github.com/mdo/code-guide/issues/new).
 
-> Every line of code should appear to be written by a single person, no matter the number of contributors.
+> Cada línea de código debe parecer escrita por una sola persona, no importa el número de contribuyentes que tenga el proyecto.
 
 ## HTML
 
 <div markdown="1">
-### Syntax
+### Sintaxis
 {: #html-syntax }
 
-- Don't capitalize tags, including the doctype.
-- Use soft tabs with two spaces—they're the only way to guarantee code renders the same in any environment.
-- Nested elements should be indented once (two spaces).
-- Always use double quotes, never single quotes, on attributes.
-- Don't include a trailing slash in self-closing elements—the [HTML5 spec](https://html.spec.whatwg.org/multipage/syntax.html#syntax-start-tag) says they're optional.
-- Don’t omit optional closing tags (e.g. `</li>` or `</body>`).
+- No use mayúsculas en las etiquetas HTML, incluido el `doctype`.
+- Use dos espacios en blanco para formatear y definir niveles entre las etiquetas HTML—es la única forma de garantizar que el código se renderice de la misma manera en cualquier entorno.
+- Elementos anidados deben indentarse una vez (con dos espacios).
+- Utilice siempre comillas dobles, nunca comillas simples para los atributos.
+- No incluya una barra inclinada final en los elementos de cierre automático—la [especificación de HTML5](https://html.spec.whatwg.org/multipage/syntax.html#syntax-start-tag) nos dice que es opcional.
+- No omita las etiquetas de cierre opcionales (p. ej. `</li>` o `</body>`).
 </div>
 
 ```html
@@ -75,8 +75,9 @@ Enforce these, or your own, agreed upon guidelines at all times. Small or large,
 
 <div markdown="1">
 ### HTML5 doctype
+{: #html5-doctype }
 
-Enforce [standards mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode) and more consistent rendering in every browser possible with this simple doctype at the beginning of every HTML page. In keeping with the suggested syntax, keep it lowercase.
+Utilice el [modo estándar](https://developer.mozilla.org/es/docs/Web/HTML/Quirks_Mode_and_Standards_Mode) para una representación más consistente en todos los navegadores declarando el `doctype` simple al comienzo de cada página HTML. Manteniendo la sintaxis sugerida use siempre minúsculas.
 
 </div>
 
@@ -93,40 +94,43 @@ Enforce [standards mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirk
 ```
 
 <div markdown="1">
-### Language attribute
+### Atributo de idioma
+{: #language-attribute }
 
-From the HTML5 spec:
+De acuerdo a las especificaciones HTML5:
 
-> Authors are encouraged to specify a lang attribute on the root html element, giving the document's language. This aids speech synthesis tools to determine what pronunciations to use, translation tools to determine what rules to use, and so forth.
+> Se recomienda a los autores a especificar el atributo lang en el elemento html raíz, dando el idioma del documento. Esto ayuda a las herramientas de síntesis de voz a determinar qué pronunciaciones usar y a las herramientas de traducción a determinar qué reglas usar, etc.
 
-Read more about the `lang` attribute [in the spec](https://html.spec.whatwg.org/multipage/semantics.html#the-html-element). Head to the <abbr title="Internet Assigned Numbers Authority">IANA</abbr> for a [list of language codes](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
+Lea más información sobre el atributo `lang` en las [especificaciones de HTML5](https://html.spec.whatwg.org/multipage/semantics.html#the-html-element). Dirígase a la <abbr title="Internet Assigned Numbers Authority">IANA</abbr> para obtener una [lista de códigos de idioma](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
 </div>
 
 ```html
-<html lang="en">
+<html lang="es">
   <!-- ... -->
 </html>
 ```
 
 <div markdown="1">
-### IE compatibility mode
+### Modo de compatibilidad con IE
+{: #ie-compatibility-mode }
 
-There's no need to include the Internet Explorer document compatibility `<meta>` tag these days, unless you need support for IE10 and older. The tag was dropped in IE11 and isn't used in Microsoft Edge (legacy or otherwise).
+No es necesario incluir la etiqueta `<meta>` para compatibilidad de documentos de Internet Explorer en estos días, a menos que necesite soporte para IE10 y versiones anteriores. La etiqueta se eliminó en IE11 y no se usa en Microsoft Edge (heredado o no).
 
-For more information, [read this awesome Stack Overflow article](https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do).
+Para más información, [lea este increíble artículo de Stack Overflow](https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do).
 </div>
 
 ```html
-<!-- IE10 and below only -->
+<!-- IE10 y versiones anteriores solamente -->
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 ```
 
 <div markdown="1">
-### Character encoding
+### Codificación de caracteres
+{: #character-encoding }
 
-Ensure proper content rendering by declaring an explicit character encoding. This also allows you to use regular characters instead of their HTML entities, like `—` instead of `&emdash;`, provided their encoding matches that of the document. For some reserved XML characters—like ampersand, non-breaking spaces, less/greater than, and quotes—you may still need to use the HTML character entities.
+Garantice una representación adecuada del contenido declarando una codificación de caracteres explícita. Esto también le permite usar caracteres regulares en lugar de sus entidades HTML, como `—` en lugar de `&emdash;`, siempre que su codificación coincida con la del documento. Para algunos caracteres XML reservados, como ampersand, espacios de no separación, menor/mayor que y comillas, es posible que aún necesite usar las entidades HTML.
 
-UTF-8 is the recommended encoding.
+UTF-8 es la codificación recomendada.
 </div>
 
 ```html
@@ -134,27 +138,28 @@ UTF-8 is the recommended encoding.
   <meta charset="utf-8">
 </head>
 <body>
-  <p>Use an em dash like so—no HTML entity required.</p>
+  <p>Para usar un guión largo como — no es requerido una entidad HTML.</p>
 </body>
 ```
 
 <div markdown="1">
-### CSS and JavaScript includes
+### Vinculación de archivos CSS y JavaScript
+{: #css-and-javascript-includes }
 
-Per HTML5 spec, typically there is no need to specify a `type` when including CSS and JavaScript files as `text/css` and `text/javascript` are their respective defaults.
+Según la especificación de HTML5, normalmente no es necesario especificar el atributo `type` cuando se incluyen archivos CSS y JavaScript, ya que `text/css` y `text/javascript` son sus respectivos valores predeterminados.
 
-#### HTML5 spec links
+####  Especificaciones HTML5
 
-- [Using link](https://www.w3.org/TR/2011/WD-html5-20110525/semantics.html#the-link-element)
-- [Using style](https://www.w3.org/TR/2011/WD-html5-20110525/semantics.html#the-style-element)
-- [Using script](https://www.w3.org/TR/2011/WD-html5-20110525/scripting-1.html#the-script-element)
+- [Usando link](https://www.w3.org/TR/2011/WD-html5-20110525/semantics.html#the-link-element)
+- [Usando style](https://www.w3.org/TR/2011/WD-html5-20110525/semantics.html#the-style-element)
+- [Usando script](https://www.w3.org/TR/2011/WD-html5-20110525/scripting-1.html#the-script-element)
 </div>
 
 ```html
-<!-- External CSS -->
+<!-- CSS externo -->
 <link rel="stylesheet" href="code-guide.css">
 
-<!-- In-document CSS -->
+<!-- CS dentro del documento -->
 <style>
   /* ... */
 </style>
@@ -164,23 +169,25 @@ Per HTML5 spec, typically there is no need to specify a `type` when including CS
 ```
 
 <div markdown="1">
-### Practicality over purity
+### Practicidad sobre pureza
+{: #practicality-over-purity }
 
-Strive to maintain HTML standards and semantics, but not at the expense of practicality. Use the least amount of markup with the fewest intricacies whenever possible.
+Esfuércese por mantener los estándares y semántica HTML, pero no a costa de la practicidad. Use la menor cantidad de marcado con la menor cantidad de complejidades, siempre que sea posible.
 </div>
 
 ```html
-<!-- Good -->
+<!-- Correcto -->
 <button>...</button>
 
-<!-- Not good -->
+<!-- Incorrecto -->
 <div class="btn" onClick="...">...</div>
 ```
 
 <div markdown="1">
-### Attribute order
+### Orden de los atributos
+{: #attribute-order }
 
-HTML attributes should come in this particular order for easier reading of code.
+Los atributos HTML deben seguir este orden particular para facilitar la lectura del código.
 
 - `class`
 - `id`, `name`
@@ -191,12 +198,12 @@ HTML attributes should come in this particular order for easier reading of code.
 - `tabindex`
 - `style`
 
-Attributes that are most commonly used for identifying elements should come first—`class`, `id`, `name`, and `data` attributes. Miscellaneous attributes unique to specific elements come second, followed by accessibility and style related attributes.
+Los atributos que más se usan para identificar elementos deben ir primero— atributos `class`, `id`, `name` y `data`. Los atributos misceláneos exclusivos de elementos específicos ocupan el segundo lugar, seguidos de los atributos relacionados con la accesibilidad y el estilo.
 </div>
 
 ```html
 <a class="..." id="..." data-toggle="modal" href="#">
-  Example link
+  Link de ejemplo
 </a>
 
 <input class="form-control" type="text">
@@ -205,19 +212,20 @@ Attributes that are most commonly used for identifying elements should come firs
 ```
 
 <div markdown="1">
-### Boolean attributes
+### Atributos booleanos
+{: #boolean-attributes }
 
-A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.
+Un atributo booleano es aquel que no necesita un valor declarado. XHTML requería que declarara un valor, pero HTML5 no tiene tal requisito.
 
-For further reading, consult the [WhatWG section on boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
+Para más información, consulte la [sección de WhatWG sobre atributos booleanos](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
 
-> The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value.
+> La presencia de un atributo booleano en un elemento representa el valor verdadero y la ausencia del atributo representa el valor falso.
 
-If you <em>must</em> include the attribute's value, and **you don't need to**, follow this WhatWG guideline:
+Si <em>debe</em> incluir el valor del atributo y **no es necesario**, siga esta guía de WhatWG:
 
-> If the attribute is present, its value must either be the empty string or [...] the attribute's canonical name, with no leading or trailing whitespace.
+> Si el atributo está presente, su valor debe ser la cadena vacía o […] el nombre canónico del atributo, sin espacios en blanco al principio o al final.
 
-In short, **don't add a value**.
+En resumen, **no añada un valor**.
 </div>
 
 ```html
@@ -231,32 +239,34 @@ In short, **don't add a value**.
 ```
 
 <div markdown="1">
-### Reduce markup
+### Reducir las etiquetas
+{: #reduce-markup }
 
-Whenever possible, avoid superfluous parent elements when writing HTML. Many times this requires iteration and refactoring, but produces less HTML.
+Siempre que sea posible, evite los elementos padres redundantes al escribir HTML. Muchas veces esto requiere iteración y refactorización de código, pero produce menos HTML.
 </div>
 
 ```html
-<!-- Not so great -->
+<!-- No tan bueno -->
 <span class="avatar">
   <img src="...">
 </span>
 
-<!-- Better -->
+<!-- Mejor -->
 <img class="avatar" src="...">
 ```
 
 <div markdown="1">
-### Editor preferences
+### Preferencias del editor
+{: #editor-preferences }
 
-Set your editor to the following settings to avoid common code inconsistencies and dirty diffs:
+Pepare su editor con las siguientes configuraciones para evitar inconsistencias de código comunes y diferencias:
 
-- Use soft-tabs set to two spaces.
-- Trim trailing white space on save.
-- Set encoding to UTF-8.
-- Add new line at end of files.
+- Usar tabulaciones suaves con dos espacios.
+- Eliminar el espacio en blaco al final de cada línea al guardar.
+- Establecer la codificación en UTF-8.
+- Agregar una nueva línea en blanco al final de cada archivos.
 
-Consider documenting and applying these preferences to your project's `.editorconfig` file. For an example, see [the one in Bootstrap](https://github.com/twbs/bootstrap/blob/main/.editorconfig). Learn more [about EditorConfig](https://editorconfig.org).
+Considere documentar y aplicar estas preferencias al archivo `.editorconfig` de su proyecto. Para ver un ejemplo, revise [el de Bootstrap](https://github.com/twbs/bootstrap/blob/main/.editorconfig). Obtenga más información [sobre EditorConfig](https://editorconfig.org).
 </div>
 
 ## CSS
