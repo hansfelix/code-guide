@@ -23,21 +23,21 @@ layout: default
 <div markdown="1">
 ### [CSS](#css)
 
-- [CSS syntax](#css-syntax)
-- [Declaration order](#declaration-order)
-- [Colors](#colors)
-- [Logical properties](#logical-properties)
-- [Avoid @import`s](#avoid-imports)
-- [Media query placement](#media-query-placement)
-- [Single declarations](#single-declarations)
-- [Shorthand notation](#shorthand-notation)
-- [Nesting in preprocessors](#nesting-in-preprocessors)
-- [Operators in preprocessors](#operators-in-preprocessors)
-- [Comments](#comments)
-- [Class names](#class-names)
-- [Selectors](#selectors)
-- [Child and descendant selectors](#child-and-descendant-selectors)
-- [Organization](#organization)
+- [Sintaxis CSS](#css-syntax)
+- [Orden en la declaración](#declaration-order)
+- [Colores](#colors)
+- [Propiedades lógicas](#logical-properties)
+- [Evite los `@import`s](#avoid-imports)
+- [Ubicación de los media query](#media-query-placement)
+- [Declaraciones de una línea](#single-declarations)
+- [Notaciones abreviadas](#shorthand-notation)
+- [Anidamiento en preprocesadores](#nesting-in-preprocessors)
+- [Operadores en preprocesadores](#operators-in-preprocessors)
+- [Comentarios](#comments)
+- [Nombre de las clases](#class-names)
+- [Selectores](#selectors)
+- [Selectores de hijos y de descendientes](#child-and-descendant-selectors)
+- [Organización](#organization)
 </div>
 
 ## Regla de oro
@@ -272,29 +272,29 @@ Considere documentar y aplicar estas preferencias al archivo `.editorconfig` de 
 ## CSS
 
 <div markdown="1">
-### Syntax
+### Sintaxis CSS
 {: #css-syntax }
 
-- Use soft tabs with two spaces—they're the only way to guarantee code renders the same in any environment.
-- When grouping selectors, keep individual selectors to a single line.
-- Include one space before the opening brace of declaration blocks for legibility.
-- Place closing braces of declaration blocks on a new line.
-- Include one space after `:` for each declaration.
-- Each declaration should appear on its own line for more accurate error reporting.
-- End all declarations with a semi-colon. The last declaration's is optional, but your code is more error prone without it.
-- Comma-separated property values should include a space after each comma (e.g., `box-shadow`).
-- Use space-separated values for color properties (e.g., `color: rgb(0 0 0 / .5)`). [See the Colors section for more information.](#colors)
-- Don't prefix property values or color parameters with a leading zero (e.g., `.5` instead of `0.5` and `-.5px` instead of `-0.5px`).
-- Lowercase all hex values, e.g., `#fff`. Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.
-- Use shorthand hex values where available, e.g., `#fff` instead of `#ffffff`.
-- Quote attribute values in selectors, e.g., `input[type="text"]`. [They’re only optional in some cases](https://mathiasbynens.be/notes/unquoted-attribute-values#css), and it’s a good practice for consistency.
-- Avoid specifying units for zero values, e.g., `margin: 0;` instead of `margin: 0px;`.
+- Use tabulaciones suaves con dos espacios—son la única forma de garantizar que el código se reproduzca de la misma manera en cualquier entorno.
+- Cuando agrupe selectores, mantenga los selectores individuales en una sola línea.
+- Incluya un espacio en blanco antes de la llave de apertura de los bloques de declaración, para facilitar la legibilidad.
+- Coloque las llaves de cierre de los bloques de declaración en una nueva línea.
+- Incluya un espacio en blanco después de `:` para cada declaración.
+- Cada declaración debe aparecer en su propia línea para un informe de errores más preciso.
+- Termine todas las declaraciones con un punto y coma. En la última declaración es opcional, pero su código es más propenso a errores sin ella.
+- Los valores de propiedad separados por comas deben incluir un espacio después de cada coma (por ejemplo: `box-shadow`).
+- Usar valores separados por espacios para las propiedades de color (por ejemplo: `color: rgb(0 0 0 / .5)`). [Consulte la sección Colores de esta guía para más información.](#colors)
+- No prefije los valores de propiedad o los parámetros de color con un cero inicial (por ejemplo: `.5` en vez de `0.5` y `-.5px` en vez de `-0.5px`).
+- Ponga en minúsculas todos los valores hexadecimales, por ejemplo, `#fff`. Las letras minúsculas son mucho más fáciles de distinguir al escanear un documento, ya que tienden a tener formas más únicas.
+- Utilice valores hexadecimales abreviados cuando estén disponibles, por ejemplo, `#fff` en vez de `#ffffff`.
+- Utilice valores de atributo en selectores, por ejemplo, `input[type="text"]`. [Solo son opcionales en algunos casos](https://mathiasbynens.be/notes/unquoted-attribute-values#css), y es una buena práctica para mantener la coherencia.
+- Evite especificar unidades para valores cero, por ejemplo, `margin: 0;` en vez de `margin: 0px;`.
 
-Questions on the terms used here? See the [syntax section of the Cascading Style Sheets article](https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Syntax) on Wikipedia.
+¿Preguntas sobre los términos utilizados aquí? Consulte la [sección de sintaxis del artículo Hojas de Estilo en Cascada](https://es.wikipedia.org/wiki/CSS) en Wikipedia.
 </div>
 
 ```scss
-// Bad CSS
+// Mal CSS
 .selector, .selector-secondary, .selector[type=text] {
   padding:15px;
   margin:0px 0px 15px;
@@ -302,7 +302,7 @@ Questions on the terms used here? See the [syntax section of the Cascading Style
   box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
 }
 
-// Good CSS
+// Buen CSS
 .selector,
 .selector-secondary,
 .selector[type="text"] {
@@ -314,28 +314,30 @@ Questions on the terms used here? See the [syntax section of the Cascading Style
 ```
 
 <div markdown="1">
-### Declaration order
+### Orden en la declaración
+{: #declaration-order }
 
-Property declarations should be grouped together in the following order:
+Las declaraciones de las propiedades CSS deben agruparse en el siguiente orden:
 
-1. Positioning
-2. Box model
-3. Typographic
+1. Posicionamiento
+2. Modelo de caja
+3. Tipografía
 4. Visual
-5. Misc
+5. Misceláneo
 
-Positioning comes first because it can remove an element from the normal document flow and override box model related styles. The box model—whether it's flex, float, grid, or table—follows as it dictates a component's dimensions, placement, and alignment. Everything else takes place _inside_ the component or without impacting the previous two sections, and thus they come last.
+El posicionamiento es lo primero porque puede eliminar un elemento del flujo normal del documento y anular los estilos relacionados con el modelo de caja. El modelo de caja—ya sea `flex`, `float`, `grid` o `table`—es lo siguiente, ya que dicta las dimensiones, la ubicación y la alineación del componente. Todo lo demás tiene lugar _dentro_ del componente o no afecta a las dos grupos anteriores, por lo que quedan en último lugar.
 
-While `border` is part of the box model, most systems globally reset the [`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) to `border-box` so that `border-width` doesn't affect overall dimensions. This, combined with keeping `border` near `border-radius`, is why it's under the Visual section instead.
+Si bien `border` es parte del modelo de caja, la mayoría de los sistemas restablecen globalmente el [`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) a `border-box` para que `border-width` no afecte las dimensiones generales.
+Todo esto, combinado con mantener el `border` cerca de `border-radius`, es la razón por la que está en la sección visual.
 
-Preprocessor mixins and functions should appear wherever most appropriate. For example, a `border-top-radius()` mixin would go in place of `border-radius` properties, while a `responsive-font-size()` function would go in place of `font-size` properties.
+Los mixins y funciones de los preprocesadores deben aparecer donde sea más apropiado. Por ejemplo, un mixin `border-top-radius()` reemplazaría las propiedades `border-radius`, mientras que una función `responsive-font-size()` reemplazaría las propiedades `font-size`.
 
-For a complete list of properties and their order, please see the [property order for Stylelint](https://github.com/stormwarning/stylelint-config-recess-order) used by [Bootstrap](https://getbootstrap.com).
+Para obtener una lista completa de propiedades y su orden, consulte el [orden de propiedades de Stylelint](https://github.com/stormwarning/stylelint-config-recess-order) utilizado por [Bootstrap](https://getbootstrap.com).
 </div>
 
 ```scss
 .declaration-order {
-  // Positioning
+  // Posicionamiento
   position: absolute;
   top: 0;
   right: 0;
@@ -343,7 +345,7 @@ For a complete list of properties and their order, please see the [property orde
   left: 0;
   z-index: 100;
 
-  // Box model
+  // Modelo de caja
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -351,7 +353,7 @@ For a complete list of properties and their order, please see the [property orde
   width: 100px;
   height: 100px;
 
-  // Typography
+  // Tipografía
   font: normal 14px "Helvetica Neue", sans-serif;
   line-height: 1.5;
   color: #333;
@@ -363,27 +365,28 @@ For a complete list of properties and their order, please see the [property orde
   border: 1px solid #e5e5e5;
   border-radius: 3px;
 
-  // Misc
+  // Misceláneo
   opacity: 1;
 }
 ```
 
 <div markdown="1">
-### Logical properties
+### Propiedades lógicas
+{: #logical-properties }
 
-Logical properties are alternatives to directional and dimensonal properties based on abstract terms like *block* and *inline*. By default, block refers to the vertical direction (top and bottom) while inline refers to the horizontal direction (right and left). You can begin to use these values in your CSS in all modern, evergreen browsers.
+Las propiedades lógicas son alternativas a las propiedades direccionales y dimensionales basadas en términos como *block* e *inline*. Por defecto, *block* se refiere a la dirección vertical (arriba y abajo) mientras que *inline* se refiere a la dirección horizontal (derecha e izquierda). Puede comenzar a usar estos valores en su CSS en todos los navegadores modernos y futuros.
 
-**Why use logical properties?** Not every language flows left-ro-right like English, so the [writing mode](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode) needs to be flexible. With logical properties, you can easily support languages that can be written horizontally or vertically (like Chinese, Japanese, and Korean). Plus, they're usually shorter and simpler to write.
+**¿Por qué usar propiedades lógicas?** No todos los idiomas se escriben de izquierda a derecha como el español o inglés, por lo que el [writing mode](https://developer.mozilla.org/es/docs/Web/CSS/writing-mode) debe ser flexible. Con propiedades lógicas, puede admitir fácilmente idiomas que se pueden escribir horizontal o verticalmente (como el chino, japonés y coreano). Además, estas propiedades suelen ser más breves y fáciles de escribir.
 
-**Additional reading:**
+**Más información:**
 
-- [CSS Logical Properties and Values – MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties)
+- [Propiedades y Valores Lógicos de CSS – MDN](https://developer.mozilla.org/es/docs/Web/CSS/CSS_logical_properties_and_values)
 - [CSS Logical Properties and Values — CSS Tricks](https://css-tricks.com/css-logical-properties-and-values/)
-- [CSS Writing Modes – MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Writing_Modes)
+- [CSS Writing Modes – MDN](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Writing_Modes)
 </div>
 
 ```scss
-// Without logical properties
+// Sin propiedades lógicas
 .element {
   margin-right: auto;
   margin-left: auto;
@@ -391,7 +394,7 @@ Logical properties are alternatives to directional and dimensonal properties bas
   border-bottom: 1px solid #eee;
 }
 
-// With logical properties
+// Con propiedades lógicas
 .element {
   margin-inline: auto;
   border-block: 1px solid #eee;
@@ -399,13 +402,14 @@ Logical properties are alternatives to directional and dimensonal properties bas
 ```
 
 <div markdown="1">
-### Colors
+### Colores
+{: #colors }
 
-With the support of [CSS Color Levels 4](https://www.w3.org/TR/css-color-4/) [in all major browsers](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb#space-separated_values), `rgba()` and `hsla()` are now aliases for `rgb()` and `hsl()`, meaning you can modify alpha values in `rgb()` and `hsl()`. Along with this comes support for new space-separated syntax for color values. For compability with future CSS color functions, use this new syntax.
+Con el soporte de [CSS Color Levels 4](https://www.w3.org/TR/css-color-4/) [en todos los principales navegadores](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb#browser_compatibility), `rgba()` y `hsla()` ahora son alias para `rgb()` y `hsl()`, lo que significa que puede modificar los valores alpha en `rgb()` y `hsl()`. Junto con esto viene el soporte para la nueva sintaxis separada por espacios para los valores de color. Para compatibilidad con futuras funciones de color CSS use esta nueva sintaxis.
 
-Regardless of your color values and syntax, always ensure your color choices meet [WCAG minimum contrast ratios](https://webaim.org/articles/contrast/) (4.5:1 for 16px and smaller, 3:1 for larger).
+Independientemente de los valores y la sintaxis de color, siempre asegúrese de que sus opciones de color cumplan con las [relaciones de contraste mínimas de WCAG](https://webaim.org/articles/contrast/) (4,5:1 para 16 px y más pequeños, 3:1 para más grandes).
 
-**Additional reading:**
+**Más información:**
 
 - [Smashing Magazine - A Guide To Modern CSS Colors](https://www.smashingmagazine.com/2021/11/guide-modern-css-colors/)
 - [`rgb()` - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
@@ -419,31 +423,36 @@ Regardless of your color values and syntax, always ensure your color choices mee
 ```
 
 <div markdown="1">
-### Avoid `@import`s
+### Evite los `@import`s
+{: #avoid-imports }
+
+En comparación con `<link>`, `@import` es más lento, ya que agrega solicitudes de página adicionales y puede causar otros problemas no previstos. Evítelos y opte por un enfoque alternativo:
 
 Compared to `<link>`s, `@import` is slower, adds extra page requests, and can cause other unforeseen problems. Avoid them and instead opt for an alternate approach:
 
-- Use multiple `<link>`elements
-- Compile your CSS with a preprocessor like [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/) into a single file
-- Concatenate your CSS files with features provided in Rails, Jekyll, and other environments
+- Use elementos `<link>`
+- Compile su CSS en un solo archivo con preprocesadores como [Sass](https://sass-lang.com/) o [Less](https://lesscss.org/)
+- Concatene sus archivos CSS con funciones proporcionadas en Rails, Jekyll y otros entornos
 
-For more information, [read this article by Steve Souders](https://www.stevesouders.com/blog/2009/04/09/dont-use-import/).
+Para más información, [puede leer este artículo de Steve Souders](https://www.stevesouders.com/blog/2009/04/09/dont-use-import/).
 </div>
 
 ```html
-<!-- Use link elements -->
+<!-- Use elementos <link> -->
 <link rel="stylesheet" href="core.css">
 
-<!-- Avoid @imports -->
+<!-- Evite los @imports -->
 <style>
   @import url("more.css");
 </style>
 ```
 
 <div markdown="1">
-### Media query placement
+### Ubicación de los media query
+{: #media-query-placement }
 
-Place media queries as close to their relevant rule sets whenever possible. Don't bundle them all in a separate stylesheet or at the end of the document. Doing so only makes it easier for folks to miss them in the future. Here's a typical setup.
+Ubique las sentencias media query lo más cerca posible de sus conjuntos de reglas relevantes, siempre que sea posible. No los agrupe todos en una hoja de estilo separada o al final del documento, hacer esti solo hará que sea más fácil que los desarrolladores los olviden a futuro. 
+Aquí hay una configuración de ejemplo.
 </div>
 
 ```css
@@ -459,20 +468,21 @@ Place media queries as close to their relevant rule sets whenever possible. Don'
 ```
 
 <div markdown="1">
-### Single declarations
+### Declaraciones de una línea
+{: #single-declarations }
 
-In instances where a rule set includes **only one declaration**, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
+En los casos en que un conjunto de reglas incluya **solo una declaración**, considere eliminar los saltos de línea para facilitar la lectura y una edición más rápida. Cualquier conjunto de reglas con múltiples declaraciones debe dividirse en líneas separadas.
 
-The key factor here is error detection—e.g., a CSS validator stating you have a syntax error on Line 183. With a single declaration, there's no missing it. With multiple declarations, separate lines is a must for your sanity.
+El factor clave aquí es la detección de errores, por ejemplo, un validador de CSS que indica que tiene un error de sintaxis en la línea 183. Con una sola declaración, no se puede perder. Con múltiples declaraciones, las líneas separadas son imprescindibles para su entendimiento.
 </div>
 
 ```scss
-// Single declarations on one line
+// Declaración de una sola línea
 .span1 { width: 60px; }
 .span2 { width: 140px; }
 .span3 { width: 220px; }
 
-// Multiple declarations, one per line
+// Declaraciones de varias líneas, una por línea
 .sprite {
   display: inline-block;
   width: 16px;
@@ -485,9 +495,10 @@ The key factor here is error detection—e.g., a CSS validator stating you have 
 ```
 
 <div markdown="1">
-### Shorthand notation
+### Notaciones abreviadas
+{: #shorthand-notation }
 
-Limit shorthand declaration usage to instances where you must explicitly set all available values. Frequently overused shorthand properties include:
+Limite el uso de propiedades abreviadas a instancias en las que debe establecer explícitamente todos los valores disponibles. Las propiedades abreviadas que se suelen usar en exceso frecuentemente incluyen:
 
 - `padding`
 - `margin`
@@ -496,15 +507,15 @@ Limit shorthand declaration usage to instances where you must explicitly set all
 - `border`
 - `border-radius`
 
-Usually we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. A `0` value implies an override of either a browser default or previously specified value.
+Por lo general, no necesitamos establecer todos los valores que representa una propiedad abreviada. Por ejemplo, los encabezados HTML solo establecen el margen superior e inferior, por lo que si es necesario, solo anule esos dos valores. Un valor `0` implica una anulación de un valor predeterminado del navegador o un valor especificado previamente.
 
-Excessive use of shorthand properties leads to sloppier code with unnecessary overrides and unintended side effects.
+El uso excesivo de propiedades abreviadas conduce a un código más descuidado con anulaciones innecesarias y efectos secundarios no deseados.
 
-The Mozilla Developer Network has a great article on [shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) for those unfamiliar with notation and behavior.
+La *Mozilla Developer Network* tiene un excelente artículo sobre [propiedades abreviadas](https://developer.mozilla.org/es/docs/Web/CSS/Shorthand_properties) para aquellos que no esten familiarizados con su notación y comportamiento.
 </div>
 
 ```scss
-// Bad example
+// Mal ejemplo
 .element {
   margin: 0 0 10px;
   background: red;
@@ -512,7 +523,7 @@ The Mozilla Developer Network has a great article on [shorthand properties](http
   border-radius: 3px 3px 0 0;
 }
 
-// Good example
+// Buen ejemplo
 .element {
   margin-bottom: 10px;
   background-color: red;
@@ -523,21 +534,22 @@ The Mozilla Developer Network has a great article on [shorthand properties](http
 ```
 
 <div markdown="1">
-### Nesting in preprocessors
+### Anidamiento en preprocesadores
+{: #nesting-in-preprocessors }
 
-Avoid unnecessary nesting in preprocessors whenever possible—keep it simple and avoid reverse nesting. Consider nesting only if you must scope styles to a parent and if there are multiple elements to be nested.
+Evite el anidamiento innecesario en los preprocesadores siempre que sea posible—manténgalo simple y evite el anidamiento inverso. Considere anidar solo si debe aplicar estilos a un padre y si este tiene varios elementos para anidar.
 
-**Additional reading:**
+**Más información:**
 
 - <a href="https://markdotto.com/2015/07/20/css-nesting/">Nesting in Sass and Less</a>
 </div>
 
 ```scss
-// Without nesting
+// Sin anidamiento
 .table > thead > tr > th { … }
 .table > thead > tr > td { … }
 
-// With nesting
+// Con anidamiento
 .table > thead > tr {
   > th { … }
   > td { … }
@@ -545,100 +557,105 @@ Avoid unnecessary nesting in preprocessors whenever possible—keep it simple an
 ```
 
 <div markdown="1">
-### Operators in preprocessors
+### Operadores en preprocesadores
+{: #operators-in-preprocessors }
 
-For improved readability, wrap all math operations in parentheses with a single space between values, variables, and operators.
+Para mejorar la legibilidad, encierre todas las operaciones matemáticas entre paréntesis separadas con un espacio en blanco entre valores, variables y operadores.
 </div>
 
 ```scss
-// Bad example
+// Mal ejemplo
 .element {
   margin: 10px 0 @variable*2 10px;
 }
 
-// Good example
+// Buen ejemplo
 .element {
   margin: 10px 0 (@variable * 2) 10px;
 }
 ```
 
 <div markdown="1">
-### Comments
+### Comentarios
+{: #comments }
 
-Code is written and maintained by people. Ensure your code is descriptive, well commented, and approachable by others. Great code comments convey context or purpose. Do not simply reiterate a component or class name. Use the `//` syntax when writing CSS with preprocessors. When shipping CSS to production, remove all comments.
+El código es escrito y mantenido por varias personas. Asegúrese de que su código sea descriptivo, correctamente comentado y accesible para los demás. Los grandes comentarios de código transmiten contexto o propósito. No reitere simplemente el nombre de un componente o clase. Utilice la sintaxis de comentario `//` al escribir CSS con preprocesadores. Al enviar CSS a producción elimine todos los comentarios.
 
-Be sure to write in complete sentences for larger comments and succinct phrases for general notes.
+Asegúrese de escribir oraciones completas para comentarios más extensos y frases breves para notas generales.
 </div>
 
 ```scss
-// Bad example
-// Modal header
+// Mal ejemplo
+// Cabecera del modal
 .modal-header {
   ...
 }
 
-// Good example
-// Wrapping element for .modal-title and .modal-close
+// Buen ejemplo
+// Elemento que encierra a .modal-title y .modal-close
 .modal-header {
   ...
 }
 ```
 
 <div markdown="1">
-### Class names
+### Nombre de las clases
+{: #class-names }
 
-- Keep classes lowercase and use dashes (not underscores or camelCase). Dashes serve as natural breaks in related class (e.g., `.btn` and `.btn-danger`).
-- Avoid excessive and arbitrary shorthand notation. `.btn` is useful for _button_, but `.s` doesn't mean anything.
-- Keep classes as short and succinct as possible.
-- Use meaningful names; use structural or purposeful names over presentational.
-- Prefix classes based on the closest parent or base class.
-- Use `.js-*` classes to denote behavior (as opposed to style), but keep these classes out of your CSS.
+- Mantenga las clases en minúsculas y use guiones (no guiones bajos ni camelCase). Los guiones sirven como separaciones naturales en el nombre de la clase (por ejemplo, `.btn` y `.btn-danger`).
+- Evite una notación abreviada excesiva y arbitraria. `.btn` es útil para referirse a un _button_, pero `.s` no significa nada.
+- Mantenga las clases tan cortas y concisa como sea posible.
+- Use nombres significativos; use nombres con estructuras o con un propósito definido por encima de que sea vistoso.
+- Los prefijos de las clases deben estar basadas en la clase padre o base más cercana.
+- Use clases `.js-*` para indicar el comportamiento (a diferencia del estilo), y mantenga estas clases fuera de sus estilos CSS.
 
-It's also useful to apply many of these same rules when creating custom properties and preprocessor variable names.
+También es útil aplicar muchas de estas mismas reglas al crear propiedades personalizadas y nombres de variables de preprocesadores.
 </div>
 
 ```scss
-// Bad example
+// Mal ejemplo
 .t { ... }
 .red { ... }
 .header { ... }
 
-// Good example
+// Buen ejemplo
 .tweet { ... }
 .important { ... }
 .tweet-header { ... }
 ```
 
 <div markdown="1">
-### Selectors
+### Selectores
+{: #selectors }
 
-- Use classes over generic element tags for more explicit and reliable styling that isn't dependent on your markup.
-- Avoid using several attribute selectors (e.g., `[class^="..."]`) on commonly occuring components. Browser performance is known to be impacted by these.
-- Keep selectors short and strive to limit the number of elements in each selector to three.
-- Scope classes to the closest parent `only` when necessary (e.g., when not using prefixed classes).
+- Prefiera usar clases sobre elementos HTML genéricos para un estilo más explícito y confiable que no dependa de su marcado.
+- Evite usar varios selectores de atributos (por ejemplo, `[class^="..."]`) en componentes comunes. Se sabe que el rendimiento del navegador se ve afectado por este tipo de selectores.
+- Mantenga los selectores cortos y esfuércese por limitar la cantidad de elementos en cada selector a tres.
+- Utilice el alcance de las clases al padre más cercano `solo` cuando sea necesario (por ejemplo, cuando no se usen clases prefijadas).
 
-**Additional reading:**
+**Más información:**
 
 - [Scope CSS classes with prefixes](https://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/)
 - [Stop the cascade](https://markdotto.com/2012/03/02/stop-the-cascade/)
 </div>
 
 ```scss
-// Bad example
+// Mal ejemplo
 span { ... }
 .page-container #stream .stream-item .tweet .tweet-header .username { ... }
 .avatar { ... }
 
-// Good example
+// Buen ejemplo
 .avatar { ... }
 .tweet-header .username { ... }
 .tweet .avatar { ... }
 ```
 
 <div markdown="1">
-### Child and descendant selectors
+### Selectores de hijos y de descendientes
+{: #child-and-descendant-selectors }
 
-When necessary, it may be helpful to use [the child combinator (`>`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator) to limit the cascade of some styles in elements like `<table>`s that are often recursively nested. Use it to limit styles to the immediate children elements of a parent element to avoid unnecessary overrides later on.
+Cuando sea necesario, puede ser útil usar el [selector de hijos (`>`)](https://developer.mozilla.org/es/docs/Web/CSS/Child_combinator) para limitar la cascada de algunos estilos en elementos como `<table>` que a menudo están anidados recursivamente. Úselo para limitar los estilos a los elementos secundarios inmediatos de un elemento principal para evitar anulaciones innecesarias más adelante.
 </div>
 
 ```css
@@ -649,30 +666,31 @@ When necessary, it may be helpful to use [the child combinator (`>`)](https://de
 ```
 
 <div markdown="1">
-### Organization
+### Organización
+{: #organization }
 
-- Organize sections of code by component.
-- Develop a consistent commenting hierarchy.
-- Use consistent white space to your advantage when separating sections of code for scanning larger documents.
-- When using multiple CSS files, break them down by component instead of page. Pages can be rearranged and components moved.
+- Organice secciones de código por componente.
+- Desarrolle una jerarquía de comentarios consistente.
+- Utilice saltos de línea consistentes a su favor cuando separe secciones de código para leer archivos más grandes.
+- Cuando utilice varios archivos CSS, divídalos por componente en lugar de por página. Las páginas se pueden reorganizar y los componentes se pueden mover.
 </div>
 
 ```scss
 //
-// Component section heading
+// Encabezado de la sección de componentes
 //
 
 .element { ... }
 
 
 //
-// Component section heading
+// Encabezado de la sección de componentes
 //
-// Sometimes you need to include optional context for the entire component. Do that up here if it's important enough.
+// A veces es necesario incluir un contexto opcional para todo el componente. Haz eso aquí arriba si es algo importante.
 //
 
 .element { ... }
 
-// Contextual sub-component or modifer
+// Subcomponente contextual o modificador
 .element-heading { ... }
 ```
