@@ -428,8 +428,6 @@ Independientemente de los valores y la sintaxis de color, siempre asegúrese de 
 
 En comparación con `<link>`, `@import` es más lento, ya que agrega solicitudes de página adicionales y puede causar otros problemas no previstos. Evítelos y opte por un enfoque alternativo:
 
-Compared to `<link>`s, `@import` is slower, adds extra page requests, and can cause other unforeseen problems. Avoid them and instead opt for an alternate approach:
-
 - Use elementos `<link>`
 - Compile su CSS en un solo archivo con preprocesadores como [Sass](https://sass-lang.com/) o [Less](https://lesscss.org/)
 - Concatene sus archivos CSS con funciones proporcionadas en Rails, Jekyll y otros entornos
